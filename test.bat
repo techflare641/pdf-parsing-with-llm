@@ -1,0 +1,1 @@
+cd src && python -m pipelines.tests.test_pdf_parsing_with_summary && cd ..

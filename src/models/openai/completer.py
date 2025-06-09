@@ -30,11 +30,14 @@ from models.model_exception import (
     ModelRetryableException,
 )
 from models.openai.to_strict_json_schema import to_strict_json_schema
+from dotenv import load_dotenv
 
 ModelT_contra = TypeVar("ModelT_contra", contravariant=True)
 OpenAIModelParam = Union[ChatModel, str]
 
 StructuredOutputT = TypeVar("StructuredOutputT", bound=BaseModel)
+
+load_dotenv(os.path.join("..", ".env"))
 
 async def complete_message_openai(
     model: OpenAIModelParam,
@@ -59,7 +62,8 @@ async def complete_message_openai(
     log.debug(
         f"Generating completion using OpenAI's {model} model @ {temperature=} with {'image' if image_base64 else 'no image'}"
     )
-    openai_client = openai.AsyncOpenAI(api_key="")
+
+    openai_client = openai.AsyncOpenAI(api_key=os.getenv('OPENAI_API_KEY'))
     if system is None:
         system = "You are a helpful assistant that follows instructions carefully."
     if user is None:
