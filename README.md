@@ -1,5 +1,3 @@
-# GoClai Home Assessment
-
 This project is a library for extracting data from PDF files and generating a summary from the extracted content.
 
 ## Features
@@ -37,3 +35,4 @@ Run test scripts:
 ./venv/scripts/activate
 ./test.bat
 ```
+
